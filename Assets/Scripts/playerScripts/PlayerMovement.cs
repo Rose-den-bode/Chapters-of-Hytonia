@@ -16,7 +16,7 @@ public class ThirdPersonMovement : MonoBehaviour
             isGrounded = controller.isGrounded;
         //Hieronder staat alles om de speler te laten bewegen ten opzichte van de camera-angle
 
-            // Verkrijg de input van de speler
+             // Verkrijg de input van de speler
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
 
