@@ -18,16 +18,30 @@ public class PortalTeleporter : MonoBehaviour
             Vector3 portalToPlayer = player.position - transform.position;
             float dotProduct = Vector3.Dot(transform.up, portalToPlayer);
 
+            Debug.Log("portalToPlayer: " + portalToPlayer);
+            Debug.Log("dotProduct: " + dotProduct);
+
             // If this is true: The player has moved across the portal
             if (dotProduct < 0f)
             {
-                // Teleport him!
+                Debug.Log("Player has crossed the portal. Starting teleportation...");
+
+                // Teleport the player
                 float rotationDiff = -Quaternion.Angle(transform.rotation, reciever.rotation);
                 rotationDiff += 180;
-                player.Rotate(Vector3.up, rotationDiff);
+                Debug.Log("Rotation difference: " + rotationDiff);
 
-                Vector3 positionOffset = Quaternion.Euler(0f, rotationDiff, 0f) * portalToPlayer;
-                player.position = reciever.position + positionOffset;
+                // Rotate the player
+                player.Rotate(Vector3.up, rotationDiff);
+                Debug.Log("Player rotated.");
+
+                // Calculate the new position based on the receiver's position
+                Vector3 newPositionOffset = reciever.TransformPoint(Quaternion.Euler(0f, rotationDiff, 0f) * portalToPlayer);
+                Debug.Log("New position offset: " + newPositionOffset);
+
+                // Apply the new position to the player
+                player.position = newPositionOffset;
+                Debug.Log("Player new position: " + player.position);
 
                 playerIsOverlapping = false;
             }
@@ -39,6 +53,7 @@ public class PortalTeleporter : MonoBehaviour
         if (other.tag == "Player")
         {
             playerIsOverlapping = true;
+            Debug.Log("Player entered the portal.");
         }
     }
 
@@ -47,6 +62,7 @@ public class PortalTeleporter : MonoBehaviour
         if (other.tag == "Player")
         {
             playerIsOverlapping = false;
+            Debug.Log("Player exited the portal.");
         }
     }
 }
