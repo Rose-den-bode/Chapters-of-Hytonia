@@ -159,9 +159,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   androidMinAspectRatio: 1
-  applicationIdentifier:
-    Standalone: com.DefaultCompany.Project1RPG
-
+  applicationIdentifier: {}
   buildNumber:
     Bratwurst: 0
     Standalone: 0
@@ -857,7 +855,7 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 2
+  activeInputHandler: 0
   windowsGamepadBackendHint: 0
   cloudProjectId: 20397dc5-9f6b-4375-a2dc-662dcb84c128
   framebufferDepthMemorylessMode: 0

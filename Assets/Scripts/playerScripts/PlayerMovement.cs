@@ -1,4 +1,3 @@
-using System.Runtime.Serialization;
 using UnityEngine;
 
 public class ThirdPersonMovement : MonoBehaviour
@@ -8,11 +7,9 @@ public class ThirdPersonMovement : MonoBehaviour
     public float speed = 6f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
-    public float damage = 10f;
 
     private Vector3 velocity;
     private bool isGrounded;
-    public Animator animator;
 
     void Update()
     {
@@ -43,6 +40,8 @@ public class ThirdPersonMovement : MonoBehaviour
 
         //Hieronder staat hoe het karakter springt
 
+            
+
             if (isGrounded && velocity.y < 0)
                 {
                     velocity.y = -2f; // Kleine negatieve waarde om te zorgen dat je op de grond blijft
@@ -56,19 +55,5 @@ public class ThirdPersonMovement : MonoBehaviour
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             }
-
-            // Animatie logica
-            _ = Input.GetAxis("Horizontal");
-            _ = Input.GetAxis("Vertical");
-
-            // Controleer of de speler beweegt
-            bool isMoving = horizontal != 0 || vertical != 0;
-            animator.SetBool("IsMoving", isMoving);
-
-            // Controleer of de speler springt
-            animator.SetBool("IsJumping", !isGrounded);
-
-            //geeft de player attack dmg
-            
     }
 }
