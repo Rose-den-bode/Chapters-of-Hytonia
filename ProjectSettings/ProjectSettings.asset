@@ -161,6 +161,7 @@ PlayerSettings:
   androidMinAspectRatio: 1
   applicationIdentifier:
     Standalone: com.DefaultCompany.Project1RPG
+
   buildNumber:
     Bratwurst: 0
     Standalone: 0
