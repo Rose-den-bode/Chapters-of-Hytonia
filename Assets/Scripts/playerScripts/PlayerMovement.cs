@@ -63,10 +63,10 @@ public class ThirdPersonMovement : MonoBehaviour
 
             // Controleer of de speler beweegt
             bool isMoving = horizontal != 0 || vertical != 0;
-            animator.SetBool("IsMoving", isMoving);
+            //animator.SetBool("IsMoving", isMoving);
 
             // Controleer of de speler springt
-            animator.SetBool("IsJumping", !isGrounded);
+            //animator.SetBool("IsJumping", !isGrounded);
 
             //geeft de player attack dmg
             
