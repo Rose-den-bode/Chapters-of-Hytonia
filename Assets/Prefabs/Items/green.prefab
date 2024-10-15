@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 5987553480480322102}
   - component: {fileID: 3276139411100167224}
   - component: {fileID: 6539979254926395991}
+  - component: {fileID: 3247227522342988656}
   m_Layer: 0
-  m_Name: Green
+  m_Name: green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,3 +138,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 8fe621902d30d6244820883ff1be3778, type: 2}
   pickupText: {fileID: 0}
+--- !u!135 &3247227522342988656
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933850750253358019}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0.14419264, z: 0}

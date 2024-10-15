@@ -9,6 +9,7 @@ public class basicChest : MonoBehaviour , IInteractable
     private GameObject HUD;
     private HUD HUDScript;
     public TextMeshProUGUI interactText;
+    public GameObject father;
 
     public void Start()
     {
@@ -23,7 +24,7 @@ public class basicChest : MonoBehaviour , IInteractable
     {
         float loot = Mathf.Round(Random.Range(25, 50));
         HUDScript.AddGold(loot);
-        Destroy(this.gameObject);
+        Destroy(father);
     }
 
     private void OnTriggerEnter(Collider other)
