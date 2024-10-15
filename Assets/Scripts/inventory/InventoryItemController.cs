@@ -5,13 +5,7 @@ using UnityEngine.UI;
 
 public class InventoryItemController : MonoBehaviour
 {
-    private Item item;
-
-    public Button Remove;
-    private void Start()
-    {
-        Remove.onClick.AddListener(RemoveItem);
-    }
+    private Item item;  
 
     public void RemoveItem()
     {

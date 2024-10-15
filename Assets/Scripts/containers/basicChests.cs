@@ -8,6 +8,7 @@ public class basicChest : MonoBehaviour , IInteractable
 {
     private GameObject HUD;
     private HUD HUDScript;
+    public TextMeshProUGUI interactText;
 
     public void Start()
     {
@@ -23,6 +24,22 @@ public class basicChest : MonoBehaviour , IInteractable
         float loot = Mathf.Round(Random.Range(25, 50));
         HUDScript.AddGold(loot);
         Destroy(this.gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player")) 
+        {
+            interactText.gameObject.SetActive(true); 
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            interactText.gameObject.SetActive(false); 
+        }
     }
 }
 
