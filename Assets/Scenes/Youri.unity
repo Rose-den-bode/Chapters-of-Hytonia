@@ -1946,7 +1946,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 861865415}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14955267, y: -0.37312615, z: 0.0610787, w: 0.91360843}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2673,8 +2673,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1171352588}
-  - {fileID: 1080781142}
   - {fileID: 1674238866}
+  - {fileID: 1080781142}
   - {fileID: 493216551}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3868,10 +3868,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1080781141}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1949057517}
+        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+        m_MethodName: ActivateInventory
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4567,6 +4567,7 @@ MonoBehaviour:
   InventoryItem: {fileID: 6471043543400542313, guid: 70772d624f360f24285334df55992222, type: 3}
   enableRemove: {fileID: 1538242290}
   inventoryItems: []
+  Inventory: {fileID: 1080781141}
 --- !u!4 &1949057518
 Transform:
   m_ObjectHideFlags: 0
