@@ -57,5 +57,21 @@ public class basicChest : MonoBehaviour , IInteractable
             interactText.gameObject.SetActive(false); 
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player")) 
+        {
+            interactText.gameObject.SetActive(true); 
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            interactText.gameObject.SetActive(false); 
+        }
+    }
 }
 
