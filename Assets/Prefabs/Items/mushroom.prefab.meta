@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Items/mushroom.prefab.meta
 guid: 273fab1669db1b84592cbb010d7d81a8
+========
+guid: 2ca345a5ab2d5ea4ab1b7920905d3c19
+>>>>>>>> b7a7b54 (update):Assets/Packages/Fantasy Low Poly Pack/Prefabs/Aspen_Tree_01.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
