@@ -30,7 +30,14 @@ public class InventoryManager : MonoBehaviour
         // Controleer of de I-toets wordt ingedrukt om de inventory te toggelen
         if (Input.GetKeyDown(KeyCode.I))
         {
-            ActivateInventory();
+            if(GameManager.instance.isMenuOpen == false || GameManager.instance.isMenuOpen == true && Inventory.activeSelf)
+            {
+                ActivateInventory();
+            }
+            else
+            {
+                Debug.Log("Je kan inventaris niet openen");
+            }
         }
 
 
@@ -38,6 +45,7 @@ public class InventoryManager : MonoBehaviour
 
     public void ActivateInventory()
     {
+        GameManager.instance.ToggleBool();
         bool isActive = !Inventory.activeSelf; // Bepaal of de inventory nu actief moet worden
         ListItems();
         Inventory.SetActive(isActive); // Wissel de actieve status van de inventory
