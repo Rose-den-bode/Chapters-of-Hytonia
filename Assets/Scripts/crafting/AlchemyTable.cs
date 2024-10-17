@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class AlchemyTable : MonoBehaviour
@@ -21,6 +22,10 @@ public class AlchemyTable : MonoBehaviour
             if(GameManager.instance.isMenuOpen ==  false || GameManager.instance.isMenuOpen == true && craftingMenu.activeSelf)
             {
                 ActivateCrafting();
+            }
+            else 
+            {
+                Debug.Log("Kan crafting niet openen");
             }
         }
     }
@@ -44,6 +49,7 @@ public class AlchemyTable : MonoBehaviour
 
     public void ActivateCrafting()
     {
+        GameManager.instance.ToggleBool();
         bool isActive = !craftingMenu.activeSelf; // Bepaal of de inventory nu actief moet worden
         craftingMenu.SetActive(isActive); // Wissel de actieve status van de inventory
 

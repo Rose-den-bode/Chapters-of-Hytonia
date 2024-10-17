@@ -4,19 +4,20 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class basicChest : MonoBehaviour , IInteractable
+public class basicChest : MonoBehaviour, IInteractable
 {
     private GameObject HUD;
     private HUD HUDScript;
     public TextMeshProUGUI interactText;
+    public GameObject father;
 
     public void Start()
     {
         HUD = GameObject.Find("HUD");
-            if (HUD == null)
-            {
-                Debug.LogError("HUD niet gevonden in de scene!");
-            }
+        if (HUD == null)
+        {
+            Debug.LogError("HUD niet gevonden in de scene!");
+        }
         HUDScript = HUD.GetComponent<HUD>();
     }
     public void Interact()
@@ -24,13 +25,14 @@ public class basicChest : MonoBehaviour , IInteractable
         float loot = Mathf.Round(Random.Range(25, 50));
         HUDScript.AddGold(loot);
         Destroy(father);
+        interactText.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) 
+        if (other.CompareTag("Player"))
         {
-            interactText.gameObject.SetActive(true); 
+            interactText.gameObject.SetActive(true);
         }
     }
 
@@ -38,40 +40,7 @@ public class basicChest : MonoBehaviour , IInteractable
     {
         if (other.CompareTag("Player"))
         {
-            interactText.gameObject.SetActive(false); 
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player")) 
-        {
-            interactText.gameObject.SetActive(true); 
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            interactText.gameObject.SetActive(false); 
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player")) 
-        {
-            interactText.gameObject.SetActive(true); 
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            interactText.gameObject.SetActive(false); 
+            interactText.gameObject.SetActive(false);
         }
     }
 }
-
