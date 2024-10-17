@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/player.prefab.meta
 guid: 6d0c4619f4b88354a9888860841e9daa
+========
+guid: 34dfe60f886028e4d8324a863abb45d6
+>>>>>>>> b7a7b54 (update):Assets/Packages/Fantasy Low Poly Pack/Prefabs/Chandelier.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
