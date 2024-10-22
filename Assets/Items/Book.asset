@@ -16,3 +16,4 @@ MonoBehaviour:
   itemName: Book
   value: 20
   icon: {fileID: -433401754, guid: 1daccc7994122424aa8f7b9874583619, type: 3}
+  itemType: 4

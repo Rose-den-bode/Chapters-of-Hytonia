@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    public static PlayerStats Instance;
     // Statistieken van de speler
     public float maxHealth = 100f;
     public float currentHealth;
@@ -25,6 +26,10 @@ public class PlayerStats : MonoBehaviour
     private float staminaRegenTimer;
     private float manaRegenTimer;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         // Initialiseren van de huidige waarden
@@ -41,6 +46,16 @@ public class PlayerStats : MonoBehaviour
         RegenerateMana();
     }
 
+    public void HealHealth(int amount)
+    {
+        currentHealth += amount;
+    }
+
+    public void HealMana(int amount)
+    {
+        currentMana += amount;
+    }
+
     // Gezondheid regeneratie
     void RegenerateHealth()
     {
@@ -48,6 +63,10 @@ public class PlayerStats : MonoBehaviour
         {
             currentHealth += healthRegenRate * Time.deltaTime;
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Zorgt dat de waarde niet hoger wordt dan maxHealth
+        }
+        else
+        {
+            currentHealth = maxHealth;
         }
     }
 
@@ -83,6 +102,7 @@ public class PlayerStats : MonoBehaviour
         }
         else
         {
+            currentMana = maxMana;
             manaRegenTimer = 0f; // Reset de timer als mana vol is
         }
     }

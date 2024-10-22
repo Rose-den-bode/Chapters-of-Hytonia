@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   itemName: GreenPotion
-  value: 5
+  value: 50
   icon: {fileID: 1319210776, guid: 1daccc7994122424aa8f7b9874583619, type: 3}
+  itemType: 2

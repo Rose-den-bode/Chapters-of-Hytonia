@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 6
   itemName: ManaBooster
-  value: 1
+  value: 75
   icon: {fileID: -867221391, guid: 1daccc7994122424aa8f7b9874583619, type: 3}
+  itemType: 3

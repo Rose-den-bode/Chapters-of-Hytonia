@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 7
   itemName: HealthBooster
-  value: 1
+  value: 75
   icon: {fileID: 873703100, guid: 1daccc7994122424aa8f7b9874583619, type: 3}
+  itemType: 1
