@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4362244485161087989}
   - component: {fileID: 9002430767703134771}
   - component: {fileID: 7310713034223352005}
+  - component: {fileID: 6765310963713015214}
   - component: {fileID: 6128357647920264135}
   - component: {fileID: 4429787609299792595}
   m_Layer: 0
@@ -194,6 +195,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 0}
   rotationSpeed: 10
+--- !u!81 &6765310963713015214
+AudioListener:
 --- !u!114 &6128357647920264135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8562724a6117def40a211393a13d1b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+
 --- !u!1 &6278116951233967431
 GameObject:
   m_ObjectHideFlags: 0
