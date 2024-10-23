@@ -25,6 +25,7 @@ public class basicChest : MonoBehaviour, IInteractable
         float loot = Mathf.Round(Random.Range(25, 50));
         HUDScript.AddGold(loot);
         Destroy(father);
+        interactText.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)

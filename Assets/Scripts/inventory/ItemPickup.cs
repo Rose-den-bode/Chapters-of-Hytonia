@@ -12,6 +12,7 @@ public class ItemPickup : MonoBehaviour
 
     void Start()
     {
+
         // Zorg ervoor dat de pickup tekst in het begin verborgen is
         pickupText.gameObject.SetActive(false);
     }
@@ -31,6 +32,7 @@ public class ItemPickup : MonoBehaviour
         InventoryManager.Instance.ListItems();
         pickupText.gameObject.SetActive(false);
     }
+
 
     private void OnTriggerEnter(Collider other)
     {

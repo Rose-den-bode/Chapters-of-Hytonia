@@ -19,4 +19,28 @@ public class InventoryItemController : MonoBehaviour
     {
         item = newItem;
     }
+
+    public void UseItem()
+    {
+        Debug.Log("Use");
+        switch (item.itemType) 
+        {
+            case Item.ItemType.Health:
+                PlayerStats.Instance.HealHealth(item.value);
+                break;
+            case Item.ItemType.HealthBooster:
+                PlayerStats.Instance.UpgradeStat("health", item.value);
+                break;
+            case Item.ItemType.Mana:
+                PlayerStats.Instance.HealMana(item.value);
+                break;
+            case Item.ItemType.ManaBooster:
+                PlayerStats.Instance.UpgradeStat("mana", item.value);
+                break;
+            default: 
+                Debug.Log("Nothing happened");
+                break;
+        }
+        RemoveItem();
+    }
 }

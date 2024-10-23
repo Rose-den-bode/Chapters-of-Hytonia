@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab089c02919891b4a8c6abacca9c8014, type: 3}
-  m_Name: Mushroom
+  m_Name: ManaBooster
   m_EditorClassIdentifier: 
-  id: 5
-  itemName: Mushroom
-  value: 0
-  icon: {fileID: -320281474, guid: 1daccc7994122424aa8f7b9874583619, type: 3}
-  itemType: 9
+  id: 6
+  itemName: ManaBooster
+  value: 75
+  icon: {fileID: -867221391, guid: 1daccc7994122424aa8f7b9874583619, type: 3}
+  itemType: 3

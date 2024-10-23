@@ -9,4 +9,19 @@ public class Item : ScriptableObject
     public string itemName;
     public int value;
     public Sprite icon;
+    public ItemType itemType;
+
+    public enum ItemType
+    {
+        Health,
+        HealthBooster,
+        Mana,
+        ManaBooster,
+        Stamina,
+        Gold,
+        Spell1,
+        Spell2,
+        Spell3,
+        Ingredient
+    }
 }

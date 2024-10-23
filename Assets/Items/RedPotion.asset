@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: RedPotion
   m_EditorClassIdentifier: 
   id: 1
-  itemName: Red potion
-  value: 10
+  itemName: RedPotion
+  value: 50
   icon: {fileID: 2029199575, guid: 1daccc7994122424aa8f7b9874583619, type: 3}
+  itemType: 0
