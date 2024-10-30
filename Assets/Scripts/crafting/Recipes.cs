@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class Recipes : MonoBehaviour
 {
@@ -9,80 +8,191 @@ public class Recipes : MonoBehaviour
     // Voeg je ScriptableObjects hier toe via de Unity-editor
     public Item item;
 
+    // Referentie naar het CraftingLog script om berichten toe te voegen aan de ScrollView
+    public CraftingLog craftingLog;
+
+    private HUD hud;
+
     private void Start()
     {
         inventoryManager = InventoryManager.Instance;
+        hud = GameObject.Find("HUD").GetComponent<HUD>();
     }
 
     // Methode om een Health Potion te craften
-    public void CraftHealthPotion()
+    public void CraftHealthPotion(int cost)
     {
-        int requiredMushroom = 2;
-
-        if (HasRequiredMaterials("Mushroom", requiredMushroom))
+        if (hud.gold >= cost)
         {
-            if (item == null)
+            int items = 2;
+
+            if (HasRequiredMaterials("Mushroom", items))
             {
-                return;
+                if (item == null)
+                {
+                    return;
+                }
+                RemoveMaterials("Mushroom", items);
+                AddCraftedItem();
+                hud.gold -= cost;
+                hud.UpdateGold();
+
+                // Voeg een bericht toe aan de crafting log
+                craftingLog.AddCraftingMessage("Health Potion has been crafted!", "#00FF00");
             }
-            RemoveMaterials("Mushroom", requiredMushroom);
-            AddCraftedItem();
-            Debug.Log("Health Potion has been crafted!");
+            else
+            {
+                // Voeg een foutmelding toe aan de crafting log
+                craftingLog.AddCraftingMessage("Niet genoeg mushrooms om een Health Potion te maken!", "#FF0000");
+            }
         }
         else
         {
-            Debug.LogError("Niet genoeg mushrooms om een Health Potion te maken!");
+            craftingLog.AddCraftingMessage("Niet genoeg geld om een Health Potion te maken!", "#FF0000");
         }
     }
 
     // Methode om een Mana Potion te craften
-    public void CraftManaPotion()
+    public void CraftManaPotion(int cost)
     {
-        int requiredFlowers = 2;
-
-        if (HasRequiredMaterials("Flower", requiredFlowers))
+        if (hud.gold >= cost)
         {
-            RemoveMaterials("Flower", requiredFlowers);
-            AddCraftedItem();
-            Debug.Log("Mana Potion has been crafted");
+            int items = 2;
+
+            if (HasRequiredMaterials("Flower", items))
+            {
+                RemoveMaterials("Flower", items);
+                AddCraftedItem();
+                hud.gold -= cost;
+                hud.UpdateGold();
+
+                // Voeg een bericht toe aan de crafting log
+                craftingLog.AddCraftingMessage("Mana Potion has been crafted", "#00FF00");
+            }
+            else
+            {
+                // Voeg een foutmelding toe aan de crafting log
+                craftingLog.AddCraftingMessage("Niet genoeg flowers om een Mana Potion te maken!", "#FF0000");
+            }
         }
         else
         {
-            Debug.LogError("Niet genoeg flowers om een Mana Potion te maken!");
+            craftingLog.AddCraftingMessage("Niet genoeg geld om een Mana Potion te maken!", "#FF0000");
         }
+
     }
 
     // Methode om de health van de speler te upgraden
-    public void UpgradeHealth()
+    public void UpgradeHealth(int cost)
     {
-        int requiredHealthPotions = 2;
-
-        if (HasRequiredMaterials("RedPotion", requiredHealthPotions))
+        if (hud.gold >= cost)
         {
-            RemoveMaterials("RedPotion", requiredHealthPotions);
-            AddCraftedItem() ;
-            Debug.Log("HealthBooster is succesvol gecraft!");
+            int items = 2;
+
+            if (HasRequiredMaterials("RedPotion", items))
+            {
+                RemoveMaterials("RedPotion", items);
+                AddCraftedItem();
+                hud.gold -= cost;
+                hud.UpdateGold();
+                // Voeg een bericht toe aan de crafting log
+                craftingLog.AddCraftingMessage("HealthBooster is succesvol gecraft!", "#00FF00");
+            }
+            else
+            {
+                // Voeg een foutmelding toe aan de crafting log
+                craftingLog.AddCraftingMessage("Niet genoeg materialen om de health Booster te!", "#FF0000");
+            }
         }
         else
         {
-            Debug.LogError("Niet genoeg materialen om de health te upgraden!");
+            craftingLog.AddCraftingMessage("Niet genoeg geld om een Health Booster te maken!", "#FF0000");
         }
+
     }
 
-    public void UpgradeMana()
+    // Methode om de mana van de speler te upgraden
+    public void UpgradeMana(int cost)
     {
-        int requiredManaPotions = 2;
-
-        if (HasRequiredMaterials("GreenPotion", requiredManaPotions))
+        if (hud.gold >= cost)
         {
-            RemoveMaterials("GreenPotion", requiredManaPotions);
-            AddCraftedItem();
-            Debug.Log("ManaBooster is succesvol gecraft!");
+            int items = 2;
+
+            if (HasRequiredMaterials("BluePotion", items))
+            {
+                RemoveMaterials("BluePotion", items);
+                AddCraftedItem();
+                hud.gold -= cost;
+                hud.UpdateGold();
+                // Voeg een bericht toe aan de crafting log
+                craftingLog.AddCraftingMessage("ManaBooster is succesvol gecraft!", "#00FF00");
+            }
+            else
+            {
+                // Voeg een foutmelding toe aan de crafting log
+                craftingLog.AddCraftingMessage("Niet genoeg materialen om de Mana Booster te maken!", "#FF0000");
+            }
         }
         else
         {
-            Debug.LogError("Niet genoeg materialen om de health te upgraden!");
+            craftingLog.AddCraftingMessage("Niet genoeg geld om een Mana Potion te maken!", "#FF0000");
         }
+
+    }
+    public void UpgradeStamina(int cost)
+    {
+        if (hud.gold >= cost)
+        {
+            int items = 2;
+
+            if (HasRequiredMaterials("Ruby", items))
+            {
+                RemoveMaterials("Ruby", items);
+                AddCraftedItem();
+                hud.gold -= cost;
+                hud.UpdateGold();
+                // Voeg een bericht toe aan de crafting log
+                craftingLog.AddCraftingMessage("ManaBooster is succesvol gecraft!", "#00FF00");
+            }
+            else
+            {
+                // Voeg een foutmelding toe aan de crafting log
+                craftingLog.AddCraftingMessage("Niet genoeg materialen om de booster te maken!", "#FF0000");
+            }
+        }
+        else
+        {
+            craftingLog.AddCraftingMessage("Niet genoeg geld om de booster te maken!", "#FF0000");
+        }
+
+    }
+
+    public void UpgradeDamage(int cost)
+    {
+        if (hud.gold >= cost)
+        {
+            int items = 2;
+
+            if (HasRequiredMaterials("Sapphire", items))
+            {
+                RemoveMaterials("Sapphire", items);
+                AddCraftedItem();
+                hud.gold -= cost;
+                hud.UpdateGold();
+                // Voeg een bericht toe aan de crafting log
+                craftingLog.AddCraftingMessage("DamageBooster is succesvol gecraft!", "#00FF00");
+            }
+            else
+            {
+                // Voeg een foutmelding toe aan de crafting log
+                craftingLog.AddCraftingMessage("Niet genoeg materialen om de Booster te maken!", "#FF0000");
+            }
+        }
+        else
+        {
+            craftingLog.AddCraftingMessage("Niet genoeg geld om de Booster te maken!", "#FF0000");
+        }
+
     }
 
     // Hulpmethode om te controleren of de speler genoeg van een materiaal heeft
@@ -119,8 +229,6 @@ public class Recipes : MonoBehaviour
     // Hulpmethode om een gecraft item toe te voegen aan de inventory
     private void AddCraftedItem()
     {
-        
-
         InventoryManager.Instance.Add(item);
         InventoryManager.Instance.ListItems();
     }

@@ -17,7 +17,7 @@ public class HUD : MonoBehaviour
     public TextMeshProUGUI staminaText; // Zorg dat je dit koppelt in de Inspector
 
 
-    private float gold = 0f;
+    public float gold = 0f;
 
     // Referentie naar het PlayerStats script
     private PlayerStats playerStats;
@@ -58,7 +58,7 @@ public class HUD : MonoBehaviour
     }
 
     // Update geldtekst
-    private void UpdateGold()
+    public void UpdateGold()
     {
         money.text = $"Money: {gold}";
     }

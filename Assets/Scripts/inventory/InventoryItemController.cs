@@ -28,8 +28,10 @@ public class InventoryItemController : MonoBehaviour
             case Item.ItemType.Health:
                 PlayerStats.Instance.HealHealth(item.value);
                 break;
-            case Item.ItemType.HealthBooster:
+            case Item.ItemType.Healthup:
+                Debug.Log("Ik werk");
                 PlayerStats.Instance.UpgradeStat("health", item.value);
+                Debug.Log(PlayerStats.Instance.maxHealth);
                 break;
             case Item.ItemType.Mana:
                 PlayerStats.Instance.HealMana(item.value);

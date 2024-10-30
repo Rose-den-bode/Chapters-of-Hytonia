@@ -140,13 +140,13 @@ public class PlayerStats : MonoBehaviour
         switch (statType.ToLower())
         {
             case "health":
-                currentHealth = Mathf.Clamp(currentHealth + value, 0, maxHealth);
+                maxHealth += value;
                 break;
             case "stamina":
-                currentStamina = Mathf.Clamp(currentStamina + value, 0, maxStamina);
+                maxStamina += value;
                 break;
             case "mana":
-                currentMana = Mathf.Clamp(currentMana + value, 0, maxMana);
+                maxMana += value;
                 break;
             default:
                 Debug.LogError($"Onbekend statType: {statType}");
@@ -159,13 +159,13 @@ public class PlayerStats : MonoBehaviour
         switch (statType.ToLower())
         {
             case "health":
-                currentHealth = Mathf.Clamp(currentHealth - value, 0, maxHealth);
+                currentHealth -= value;
                 break;
             case "stamina":
-                currentStamina = Mathf.Clamp(currentStamina - value, 0, maxStamina);
+                currentStamina -= value;
                 break;
             case "mana":
-                currentMana = Mathf.Clamp(currentMana - value, 0, maxMana);
+                currentMana -= value;
                 break;
             default:
                 Debug.LogError($"Onbekend statType: {statType}");
