@@ -10,9 +10,6 @@ public class MeleeAttack : MonoBehaviour
     float currentYRotation;
     public WeaponCollider weaponColliderScript;
 
-    [SerializeField] private string weaponName = "Katana";
-    private Collider weaponCollider;
-
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -34,7 +31,6 @@ public class MeleeAttack : MonoBehaviour
     public void ChangeAttackBool(int value)
     {
         attacking = (value != 0);
-        Debug.Log("Attacking: " + attacking);
     }
 
     public void Attack()

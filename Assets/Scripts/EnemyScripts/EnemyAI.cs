@@ -1,7 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -23,6 +27,8 @@ public class EnemyAI : MonoBehaviour
     // Statussen
     private bool playerInSightRange;
     private bool playerInAttackRange;
+    private bool isAttacking = false;
+    bool weakened = false;
 
     // Tijdelijke doelpositie voor roaming
     private Vector3 roamTarget;
@@ -36,6 +42,8 @@ public class EnemyAI : MonoBehaviour
     // Animator voor het aansturen van animaties
     private Animator animator;
 
+    private Slider healthBar;  // Sleep hier de health bar Slider naartoe
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,10 +52,17 @@ public class EnemyAI : MonoBehaviour
         animator = GetComponent<Animator>();  // Haal de Animator component op
         playerStats = player.GetComponent<PlayerStats>();
 
+        healthBar = GetComponentInChildren<Slider>();
+        if (healthBar == null)
+        {
+            Debug.LogError("Health Bar Slider not found on " + gameObject.name);
+        }
 
 
         maxHealth = stats.maxHealth;
         currentHealth = maxHealth;
+        UpdateHealthBar();
+
         speed = stats.speed;
 
         lastAttackTime = -attackCooldown;
@@ -70,8 +85,6 @@ public class EnemyAI : MonoBehaviour
         // Gedragskeuzes op basis van de afstand tot de speler
         if (playerInAttackRange)
         {
-            animator.SetBool("Walk", false);
-            animator.Play("Attack");
             AttackPlayer();  // Val de speler aan
         }
         else if (playerInSightRange && !playerInAttackRange)
@@ -81,7 +94,7 @@ public class EnemyAI : MonoBehaviour
 
             ChasePlayer();  // Achtervolg de speler
         }
-        else if ((!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance && animator.GetBool("Idle") == false) || (animator.GetBool("Run") == true && !playerInAttackRange))
+        else if ((!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance && animator.GetBool("Idle") == false))
         {
             animator.SetBool("Walk", false);
             animator.SetBool("Idle", true);
@@ -109,19 +122,26 @@ public class EnemyAI : MonoBehaviour
         // Achtervolg animatie
     }
 
+    public void ToggleAttack(int value)
+    {
+        isAttacking = (value != 0);
+    }
+
+    public bool IsAttacking()
+    {
+        return isAttacking;
+    }
+
+
     void AttackPlayer()
     {
         agent.SetDestination(transform.position);
         if (Time.time > lastAttackTime + attackCooldown)
         {
+            transform.LookAt(player);
+            animator.SetBool("Walk", false);
+            animator.Play("Attack");
             lastAttackTime = Time.time;
-            // Zorg dat de speler schade ontvangt via zijn gezondheidssysteem
-            if (playerStats != null)
-            {
-                playerStats.TakeDamage(stats.damage);
-            }
-
-            Debug.Log("Zombie valt aan!");
         }
     }
 
@@ -138,7 +158,18 @@ public class EnemyAI : MonoBehaviour
     public void DealDamage(float damage)
     {
         currentHealth -= damage;
+        UpdateHealthBar();
+        if (currentHealth < maxHealth/2 && !weakened) 
+        {
+            weakened = true;
+            animator.Play("TakeHit");   
+        }
         Debug.Log(currentHealth);
+    }
+
+    void UpdateHealthBar()
+    {
+        healthBar.value = currentHealth / maxHealth;  // Zorg dat de Slider min = 0, max = 1
     }
 
     private void Die()
@@ -148,9 +179,9 @@ public class EnemyAI : MonoBehaviour
         collider.enabled = false;
 
         // Na een korte vertraging verdwijnt de zombie
-        Destroy(gameObject, 1.3f);
+        Destroy(gameObject, 1.1f);
     }
-
+   
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

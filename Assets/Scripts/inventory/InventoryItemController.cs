@@ -9,7 +9,6 @@ public class InventoryItemController : MonoBehaviour
 
     public void RemoveItem()
     {
-        Debug.Log("Verwijder item: " + item.itemName);
         InventoryManager.Instance.Remove(item); // Verwijder het item uit de lijst
         Destroy(gameObject); // Verwijder het UI-object
         InventoryManager.Instance.ListItems(); // Herlaad de inventaris UI
@@ -42,7 +41,7 @@ public class InventoryItemController : MonoBehaviour
                 PlayerStats.Instance.UpgradeStat("stamina", item.value);
                 break;
             case Item.ItemType.DamageBooster:
-                PlayerStats.Instance.UpgradeStat("mana", item.value);
+                PlayerStats.Instance.damageModifier += 1;
                 break;
             default: 
                 Debug.Log("Nothing happened");

@@ -26,6 +26,8 @@ public class PlayerStats : MonoBehaviour
     private float staminaRegenTimer;
     private float manaRegenTimer;
 
+    public float damageModifier = 0;
+
     private void Awake()
     {
         Instance = this;

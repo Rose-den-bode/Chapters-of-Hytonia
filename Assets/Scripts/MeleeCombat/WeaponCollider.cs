@@ -5,7 +5,7 @@ public class WeaponCollider : MonoBehaviour
 {
     public MeleeAttack meleeAttack;  // Referentie naar MeleeAttack script
     public Weapons weapon;
-    public EnemyStats enemyStats;
+    public EnemyAI enemyAi;
     private List<Collider> hitEnemies = new List<Collider>(); // Lijst van vijanden die tijdens deze slag geraakt zijn
 
 
@@ -14,12 +14,12 @@ public class WeaponCollider : MonoBehaviour
         if (other.CompareTag("Enemy") && meleeAttack.IsAttacking() && !hitEnemies.Contains(other) && weapon != null)
         {
             hitEnemies.Add(other);
-            other.GetComponent<EnemyAI>().DealDamage(weapon.Damage);
+            other.GetComponent<EnemyAI>().ToggleAttack(0);
+            other.GetComponent<EnemyAI>().DealDamage(weapon.Damage + PlayerStats.Instance.damageModifier * weapon.Damage);
         }
-        if (other.CompareTag("Player") && meleeAttack.IsAttacking() && !hitEnemies.Contains(other) && enemyStats != null)
+        if (other.CompareTag("Player") && enemyAi != null && enemyAi.IsAttacking())
         {
-            hitEnemies.Add(other);
-            other.GetComponent<EnemyAI>().DealDamage(enemyStats.damage);
+            other.GetComponent<PlayerStats>().TakeDamage(enemyAi.stats.damage);
         }
     }
 
