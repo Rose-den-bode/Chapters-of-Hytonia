@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 10
   itemName: StaminaBooster
   value: 50
-  icon: {fileID: 0}
+  icon: {fileID: -323835055, guid: 1daccc7994122424aa8f7b9874583619, type: 3}
   itemType: 5

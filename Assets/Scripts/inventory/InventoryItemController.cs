@@ -22,7 +22,6 @@ public class InventoryItemController : MonoBehaviour
 
     public void UseItem()
     {
-        Debug.Log("Use");
         switch (item.itemType) 
         {
             case Item.ItemType.Health:
@@ -37,6 +36,12 @@ public class InventoryItemController : MonoBehaviour
                 PlayerStats.Instance.HealMana(item.value);
                 break;
             case Item.ItemType.ManaBooster:
+                PlayerStats.Instance.UpgradeStat("mana", item.value);
+                break;
+            case Item.ItemType.StaminaBooster:
+                PlayerStats.Instance.UpgradeStat("stamina", item.value);
+                break;
+            case Item.ItemType.DamageBooster:
                 PlayerStats.Instance.UpgradeStat("mana", item.value);
                 break;
             default: 
