@@ -14,10 +14,12 @@ public class Item : ScriptableObject
     public enum ItemType
     {
         Health,
-        HealthBooster,
+        Healthup,
         Mana,
         ManaBooster,
         Stamina,
+        StaminaBooster,
+        DamageBooster,
         Gold,
         Spell1,
         Spell2,

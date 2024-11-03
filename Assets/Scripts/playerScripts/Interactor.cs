@@ -11,7 +11,7 @@ public class Interactor : MonoBehaviour
 {
 
     public Transform InteractorSource;
-    public float InteractRange = 1.2f;
+    public float InteractRange = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +23,7 @@ public class Interactor : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E)) 
         {
-            Ray r = new Ray(InteractorSource.position, InteractorSource.forward);
+            Ray r = new Ray(InteractorSource.position + new Vector3(0, 0.5f,0), InteractorSource.forward);
 
             Debug.DrawRay(r.origin, r.direction * InteractRange, Color.red, 1.0f);
 

@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: Flower
   value: 0
   icon: {fileID: -272771120, guid: 1daccc7994122424aa8f7b9874583619, type: 3}
-  itemType: 7
+  itemType: 11

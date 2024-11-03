@@ -7,6 +7,8 @@ TagManager:
   - Container
   - Portal trainingAria
   - Portal town
+  - Weapon
+  - Enemy
   layers:
   - Default
   - TransparentFX
