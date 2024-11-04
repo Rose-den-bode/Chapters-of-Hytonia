@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class ItemSpawner : MonoBehaviour
 {
     private Vector3 startPosition;
     public GameObject prefab; // De prefab van de bloem die je wilt spawnen

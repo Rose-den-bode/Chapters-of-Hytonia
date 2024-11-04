@@ -9,6 +9,7 @@ TagManager:
   - Portal town
   - Weapon
   - Enemy
+  - Ingredient
   layers:
   - Default
   - TransparentFX
