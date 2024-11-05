@@ -13,12 +13,21 @@ public class iceicle : MonoBehaviour
 
     IEnumerator IceicleLifeSpan()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         Destroy(gameObject);
     }
     // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector3.up * Time.deltaTime * speed);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            other.GetComponent<EnemyAI>().DealDamage(25);
+            Destroy(gameObject);
+        }
     }
 }
