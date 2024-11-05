@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Items/flower.prefab.meta
+guid: 37312cc21f7afdb469e2ee4a281bd892
+========
+guid: fb395db87e0eab14c9aeced0e428e7a7
+>>>>>>>> b7a7b54 (update):Assets/PolygonDungeon/Prefabs/Items/SM_Item_Bag_Large.prefab.meta
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

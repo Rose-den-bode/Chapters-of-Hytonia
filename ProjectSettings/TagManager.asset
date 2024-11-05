@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Container
+  - Portal trainingAria
+  - Portal town
+  - Weapon
+  - Enemy
+  - Ingredient
   layers:
   - Default
   - TransparentFX
