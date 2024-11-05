@@ -45,30 +45,32 @@ public class InventoryManager : MonoBehaviour
 
     public void ActivateInventory()
     {
-        GameManager.instance.ToggleBool();
-        bool isActive = !Inventory.activeSelf; // Bepaal of de inventory nu actief moet worden
-        ListItems();
-        Inventory.SetActive(isActive); // Wissel de actieve status van de inventory
+        
+            GameManager.instance.ToggleBool();
+            bool isActive = !Inventory.activeSelf; // Bepaal of de inventory nu actief moet worden
+            ListItems();
+            Inventory.SetActive(isActive); // Wissel de actieve status van de inventory
 
-        // Pauze de game of hervat deze
-        if (isActive)
-        {
-            Time.timeScale = 0; // Pauze de game
-            Cursor.lockState = CursorLockMode.None; // Ontgrendel de muis
-            Cursor.visible = true; // Maak de muis zichtbaar
-        }
-        else
-        {
-            Time.timeScale = 1; // Hervat de game
-            Cursor.lockState = CursorLockMode.Locked; // Lock de muis naar het midden
-            Cursor.visible = false; // Maak de muis onzichtbaar
-        }
+            // Pauze de game of hervat deze
+            if (isActive)
+            {
+                Time.timeScale = 0; // Pauze de game
+                Cursor.lockState = CursorLockMode.None; // Ontgrendel de muis
+                Cursor.visible = true; // Maak de muis zichtbaar
+            }
+            else
+            {
+                Time.timeScale = 1; // Hervat de game
+                Cursor.lockState = CursorLockMode.Locked; // Lock de muis naar het midden
+                Cursor.visible = false; // Maak de muis onzichtbaar
+            }
 
-        if (!Inventory.activeSelf)
-        {
-            Cursor.lockState = CursorLockMode.Locked; // Lock de muis naar het midden
-            Cursor.visible = false; // Maak de muis onzichtbaar
-        }
+            if (!Inventory.activeSelf)
+            {
+                Cursor.lockState = CursorLockMode.Locked; // Lock de muis naar het midden
+                Cursor.visible = false; // Maak de muis onzichtbaar
+            }
+        
     }
 
     public void Add(Item item)

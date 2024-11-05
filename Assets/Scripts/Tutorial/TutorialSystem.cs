@@ -15,7 +15,7 @@ public class TutorialSystem : MonoBehaviour
     void Update()
     {
         // Volgende tab via Enter
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.N))
         {
             NextTab();
         }
