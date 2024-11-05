@@ -6,6 +6,7 @@ public class ThirdPersonMovement : MonoBehaviour
     public CharacterController controller;
     public Transform cameraTransform;
     public float speed = 6f;
+    public float sprintSpeed = 10f; // Variabele voor sprintsnelheid
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
     public float damage = 10f;
@@ -14,55 +15,49 @@ public class ThirdPersonMovement : MonoBehaviour
     private bool isGrounded;
     private Animator animator;
 
+    private PlayerStats playerStats; // Referentie naar het PlayerStats-script
+
+    public float sprintStaminaCost = 10f; // Hoeveel stamina het kost om te sprinten per seconde
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        playerStats = PlayerStats.Instance; // Haal de instantie van PlayerStats op
     }
+
     void Update()
     {
         isGrounded = controller.isGrounded;
         Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
 
-        Move();
-            // Verkrijg de input van de speler
-            
-        //Hieronder staat alles om de speler te laten bewegen ten opzichte van de camera-angle
-
-
-
-        //Hieronder staat hoe het karakter springt
-
-        if (isGrounded && velocity.y < 0)
-                {
-                    velocity.y = -2f; // Kleine negatieve waarde om te zorgen dat je op de grond blijft
-                }
-
-            // Pas zwaartekracht toe
-            velocity.y += gravity * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
-
-            if (Input.GetButtonDown("Jump") && isGrounded)
-            {
-                animator.Play("JumpAll");
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            }
+        Move(); // Verplaatsing
+        ApplyGravityAndJump(); // Pas zwaartekracht en springen toe
     }
 
     private void Move()
     {
-
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        if (Input.GetAxis("Horizontal") != 0|| Input.GetAxis("Vertical") != 0)
+        if (horizontal != 0 || vertical != 0)
         {
             animator.SetBool("IsMoving", true);
-            // Verkrijg de richting van de camera
+
+            // Controleer of de speler kan sprinten
+            bool isSprinting = Input.GetKey(KeyCode.LeftShift) && isGrounded && playerStats.currentStamina > 0;
+            float currentSpeed = isSprinting ? sprintSpeed : speed;
+
+            // Als de speler aan het sprinten is, verlaag de stamina
+            if (isSprinting)
+            {
+                playerStats.UseStamina(sprintStaminaCost * Time.deltaTime); // Verbruik stamina per seconde
+            }
+
+            // Camera-gebaseerde beweging
             Vector3 cameraForward = cameraTransform.forward;
             Vector3 cameraRight = cameraTransform.right;
 
-            // Zorg ervoor dat de camera alleen op de Y-as rotert
+            // Alleen rotatie op de Y-as
             cameraForward.y = 0f;
             cameraRight.y = 0f;
 
@@ -70,16 +65,32 @@ public class ThirdPersonMovement : MonoBehaviour
             cameraForward.Normalize();
             cameraRight.Normalize();
 
-            // Bereken de gewenste bewegingsrichting op basis van camera
+            // Bereken de bewegingsrichting op basis van de camera
             Vector3 moveDirection = cameraForward * vertical + cameraRight * horizontal;
 
-            // Beweeg de speler
-            controller.Move(moveDirection * speed * Time.deltaTime);
+            // Verplaats de speler
+            controller.Move(moveDirection * currentSpeed * Time.deltaTime);
         }
         else
         {
             animator.SetBool("IsMoving", false);
         }
+    }
 
+    private void ApplyGravityAndJump()
+    {
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f; // Kleine negatieve waarde om op de grond te blijven
+        }
+
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            animator.Play("JumpAll");
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
     }
 }
