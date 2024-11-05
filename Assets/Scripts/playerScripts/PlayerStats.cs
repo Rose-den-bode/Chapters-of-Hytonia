@@ -45,7 +45,6 @@ public class PlayerStats : MonoBehaviour
         // Roep de regeneratiefuncties aan
         RegenerateHealth();
         RegenerateStamina();
-        RegenerateMana();
     }
 
     public void HealHealth(int amount)
@@ -63,7 +62,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (currentHealth < maxHealth)
         {
-            currentHealth += healthRegenRate * Time.deltaTime;
+            currentHealth += healthRegenRate * (Time.deltaTime/4);
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Zorgt dat de waarde niet hoger wordt dan maxHealth
         }
         else

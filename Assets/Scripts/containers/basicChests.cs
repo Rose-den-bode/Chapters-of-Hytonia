@@ -22,7 +22,7 @@ public class basicChest : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
-        float loot = Mathf.Round(Random.Range(25, 50));
+        float loot = Mathf.Round(Random.Range(9001, 9999));
         HUDScript.AddGold(loot);
         Destroy(father);
         interactText.gameObject.SetActive(false);

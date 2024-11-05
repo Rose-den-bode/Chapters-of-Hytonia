@@ -8,6 +8,8 @@ public class QuestGiver : MonoBehaviour
 {
     //UI element
     public TextMeshProUGUI questBox;
+    public TextMeshProUGUI interactText;
+    private bool isInRange;
 
     //quest status
     private string progress;
@@ -54,10 +56,6 @@ public class QuestGiver : MonoBehaviour
         UpdateQuest();
     }
 
-    private void OnMouseDown()
-    {
-        QuestGenerator(questNumber);
-    }
 
     public void QuestGenerator(int number)
     {
@@ -108,6 +106,11 @@ public class QuestGiver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isInRange && Input.GetKeyDown(KeyCode.E)) 
+        {
+            QuestGenerator(questNumber);
+        }
+        
         Complete();
     }
     public bool IsCompleted()
@@ -121,6 +124,24 @@ public class QuestGiver : MonoBehaviour
             completed = true;
             HUDScript.AddGold(rewardAmount);
             ResetQuest();
+        }
+    }
+
+        private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player")) // Zorg ervoor dat je de juiste tag gebruikt
+        {
+            isInRange = true; // Speler is in het bereik
+            interactText.gameObject.SetActive(true); // Toon de interact tekst
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isInRange = false; // Speler is niet meer in het bereik
+            interactText.gameObject.SetActive(false); // Verberg de interact tekst
         }
     }
 }

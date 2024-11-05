@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Fireball : MonoBehaviour
@@ -13,12 +14,21 @@ public class Fireball : MonoBehaviour
 
     IEnumerator FireballLifeSpan()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         Destroy(gameObject);
     }
     // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            other.GetComponent<EnemyAI>().DealDamage(30);
+            Destroy(gameObject);
+        }
     }
 }
